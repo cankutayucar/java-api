@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +39,12 @@ public class CompanyManager implements ICompanyService{
 
     @Override
     public void updateCompany(CompanyDto companyDto) {
-        var company = modelMapper.map(companyDto,Company.class);
-        var isExists = companyRepository.existsById(companyDto.getId());
-        if (isExists) companyRepository.updateCompany(companyDto.getId(),companyDto.isIscompanyconfirmed(),companyDto.getCompanyname());
+        Optional<Company> optionalCompany = companyRepository.findById(companyDto.getId());
+        if (optionalCompany.isPresent()){
+            var company = optionalCompany.get();
+            company.setCompanyname(companyDto.getCompanyname());
+            company.setIscompanyconfirmed(companyDto.isIscompanyconfirmed());
+            companyRepository.save(company);
+        }
     }
 }
