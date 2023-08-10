@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 public class CanApplication {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
     public static void main(String[] args) {
         SpringApplication.run(CanApplication.class, args);
     }

@@ -1,7 +1,6 @@
 package com.ucar.can.configuration;
 
-import com.ucar.can.service.IKullaniciService;
-import com.ucar.can.service.KullaniciManager;
+import com.ucar.can.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,4 +24,21 @@ public class Config {
         return  new KullaniciManager(modelMapper());
     }
 
+    @Bean
+    @Scope("prototype")
+    public ICompanyService iCompanyService(){
+        return new CompanyManager(modelMapper());
+    }
+
+    @Bean
+    @Scope("prototype")
+    public IProductService iProductService(){
+        return new ProductManager(modelMapper());
+    }
+
+    @Bean
+    @Scope("prototype")
+    public IOrderService iOrderService(){
+        return new OrderManager(modelMapper());
+    }
 }
