@@ -1,21 +1,11 @@
-package com.ucar.can.model;
-
-import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+package com.ucar.can.dto;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDto {
     private long id;
-    @Column(name = "companyid")
     private long companyid;
-    @Column(name = "productid")
     private long productid;
 
     public long getId() {
